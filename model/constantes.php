@@ -13,3 +13,4 @@ function seg($var) {
 //Constantes de Tabela
 //Tabelas ADMIN
 define("TBL_HORARIO",DB_ADMIN.TBL_ADMIN."horario ");
+define("TBL_GLICEMIA",DB_ADMIN.TBL_ADMIN."glicemia ");
