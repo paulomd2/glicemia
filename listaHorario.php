@@ -2,9 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
-        <script src="js/jquery-2.1.3.js"></script>
-        <script src="js/jquery-ui.js"></script>
+        <?php require_once 'head.php'; ?>
         <script>
             $(document).ready(function(){
                 $("#listaHorarios").sortable({
@@ -34,6 +32,11 @@
         </script>
     </head>
     <body>
+        <nav id="menu">
+            <?php
+            require_once 'menu.php'
+            ?>
+        </nav>
         <section id="listaHorarios">
             <?php
             require_once 'model/horarioDAO.php';
