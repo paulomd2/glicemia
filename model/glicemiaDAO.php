@@ -4,7 +4,7 @@ require_once 'banco.php';
 require_once 'bean/glicemia.php';
 
 class GlicemiaDAO extends Banco {
-
+    
     public function cadGlicemia(Glicemia $objGlicemia) {
         $conexao = $this->abreConexao();
 
@@ -30,8 +30,11 @@ class GlicemiaDAO extends Banco {
         $banco = $conexao->query($sql);
 
         $linhas = array();
+        $i=0;
         while ($linha = $banco->fetch_assoc()) {
+            $linha['ordem'] = $i;
             $linhas[] = $linha;
+            $i++;
         }
 
         return $linhas;

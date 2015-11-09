@@ -118,8 +118,11 @@
 
             $horarios = $objHorarioDao->listaHorario();
             $glicemias = $objGlicemiaDao->listaGlicemia($mes);
-            
-            array_unshift($glicemias, array(''));
+
+            echo '<pre>';
+            var_dump($glicemias);
+            echo '</pre>';
+//            array_unshift($glicemias, array(''));
             ?>
             <table border='1'>
                 <thead>
@@ -147,21 +150,19 @@
                         } else {
                             $dia = ($i <= 9) ? '0' . $i : $i;
                             $data = $dia . '/' . $mes . '/' . $ano;
-                            $indice = array_search($data, array_column($glicemias, 'data'));
-                            
-                            if ($indice) {
-                                echo '<td>' . $glicemias[$indice]['glicemia'] . '</td>';
-                            }else{
-                                echo '<td>'.array_search($data, array_column($glicemias, 'data')).'</td>';
+
+                            $indice = NULL;
+                            foreach ($glicemias as $key => $val) {
+                                if ($val['data'] === $data && $val['ordem'] == $j - 1) {
+                                   echo $indice = $key;
+                                }
                             }
-                            /*
-                              if (date('d', strtotime(@$glicemias[$j]['data'])) == $dataCompara) {
-                              echo '<td>'.$glicemias[$j]['glicemia'].'</td>';
-                              } else {
-                              echo '<td>&nbsp;</td>';
-                              }
-                             * 
-                             */
+
+                            if ($indice !== NULL) {
+                                echo '<td>' . $glicemias[$indice]['glicemia'] . '</td>';
+                            } else {
+                                echo '<td>&nbsp;</td>';
+                            }
                         }
                     }
 
